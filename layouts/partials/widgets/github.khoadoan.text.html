@@ -1,6 +1,12 @@
-{{ $page := .root }}
-{{ $section := .page }}
+{{ $st := .page }}
+{{ $columns := $st.Params.design.columns | default "2" }}
 
-<h2>{{$section.Title}}</h2>
-
-<p>{{$section.Content}}</p>
+{{ if ne $columns "1" }}
+  <div class="col-12 col-lg-8">
+    {{ $st.Content }}
+  </div>
+{{ else }}
+  <div class="col-12">
+    {{ $st.Content }}
+  </div>
+{{ end }}
